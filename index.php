@@ -38,7 +38,5 @@
 
   $main->append(Ax::getMemoryString());
 
-  $main->appendJS('');
-
   $page->print();
 ?>
