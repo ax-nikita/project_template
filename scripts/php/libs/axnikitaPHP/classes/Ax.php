@@ -1,5 +1,5 @@
 <?
-class Ax {
+class Ax { 
   private const ALL_VAR_TYPES = [
     'boolean',
     'integer',
