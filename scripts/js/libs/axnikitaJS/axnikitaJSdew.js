@@ -1598,7 +1598,6 @@ class axCanvas {
 	}
 
 	print() {
-
 		this.clear();
 
 		this.eventEngine();
