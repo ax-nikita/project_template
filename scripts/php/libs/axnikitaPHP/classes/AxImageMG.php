@@ -1,4 +1,7 @@
 <?
+/* 
+  В разработке, 
+*/
 class AxImageMG {
   static $imgTypes = [
     'jpeg',

@@ -20,9 +20,5 @@ class AxHashLib {
 
     return $file_dir;
   }
-
-  function getMap() {
-
-  }
 }
 ?>

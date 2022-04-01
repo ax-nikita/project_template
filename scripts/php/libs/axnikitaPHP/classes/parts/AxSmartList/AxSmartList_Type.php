@@ -1,10 +1,10 @@
 <? 
   class AxSmartList_MapPoint {
-
-    private string $name;
-    private string $filterFunction;
-    private string $varType;
-    private array $items = [];
+    protected string $name;
+    protected string $filterFunction;
+    protected string $varType;
+    protected array $items = [];
+    protected int $key = 0;
     public $value;
 
     function __construct($options) {
@@ -25,6 +25,12 @@
         $this->varType = $type;
         $this->filterItems();
       } 
+    }
+
+    function appendItem(object &$item) {
+      $key = $this->key++;
+      $this->items[$key] = &$item;
+      return $key;
     }
 
     function filterItems() {
