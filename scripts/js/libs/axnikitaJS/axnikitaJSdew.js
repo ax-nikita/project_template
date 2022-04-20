@@ -330,6 +330,7 @@ axRequest = class axRequest {
 	xhrTemplate = {};
 	dataTemplate = {};
 	saveLoadData = false;
+	requestHeaders = {};
 	static loadData = {};
 	constructor(dir, obj = {}) {
 		this.dir = dir;
@@ -366,6 +367,10 @@ axRequest = class axRequest {
 		};
 
 		xhr.open(type, href);
+
+		for (const header in this.requestHeaders) {
+			xhr.setRequestHeader(header, this.requestHeaders[header]);
+		}
 
 		if (this.saveLoadData) {
 			dataKeys = data.keys();
@@ -711,7 +716,15 @@ axLoader = class axLoader {
 		} else if (!buffer[this.dir][this.name]) {
 			buffer[this.dir][this.name] = new constructor.bufferCel(this);
 		};
-		return buffer[this.dir][this.name].getPreparedValue(this);
+
+		let
+			node = buffer[this.dir][this.name].getPreparedValue(this);
+		node.reload = this.reload;
+		node.axLoader = this;
+		return node;
+	};
+	reload() {
+		this.replaceWith(this.axLoader.content);
 	};
 	setSelector(sel = false) {
 		this.selector = sel;
@@ -809,6 +822,10 @@ axLoader.bufferCel = class {
 					this.nodeArray.forEach(el => {
 						let
 							newNode = el.loader.leadUpFunction(this.getNode(el.loader.selector));
+
+						newNode.reload = el.reload;
+						newNode.axLoader = el.axLoader;
+
 						el.replaceWith(newNode);
 					});
 					this.nodeArray = [];
@@ -1156,7 +1173,7 @@ window.axJson = class axJson {
 		button.addEventListener('click', function () {
 			let
 				data;
-			console.dir(li);
+
 			if (li.previousElementSibling) {
 				data = axJson.getJsonDataFromLi(li.previousElementSibling);
 				if (li.parentElement.isArray) {

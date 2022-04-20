@@ -1,6 +1,6 @@
 <?
   const AX_JS_CONFIG = [
-    'get_page' => 'min'
+    'get_page' => 'domLoader'
   ];
 
   const AX_CONFIG = [

@@ -81,8 +81,8 @@
 
     static function registerTranslate($type, $key, $obj) {
       if(!static::checkGlossary(static::$lang, $type, $key, $obj)) {
-        foreach (static::getOurLangs() as $v) {
-          static::checkGlossary($v, $type, $key, $obj);
+        foreach (static::getOurLangs() as $k => $v) {
+          static::checkGlossary($k, $type, $key, $obj);
         }
       }
       return static::$glossarys[static::$lang][$type][$key];

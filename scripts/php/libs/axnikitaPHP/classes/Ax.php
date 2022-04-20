@@ -133,6 +133,9 @@ class Ax {
     case 'eng':
       $str .= "[a-zA-Z0-9]{" . $min . "," . $max . "}/u";
       break;
+    case 'eng-':
+      $str .= "[a-zA-Z]{" . $min . "," . $max . "}/u";
+      break;
     case 'all':
       $str .= "[a-zA-Zа-яА-ЯёЁ\d]{" . $min . "," . $max . "}/u";
       break;
@@ -142,8 +145,11 @@ class Ax {
     case 'allS':
       $str .= "[a-zA-Zа-яА-ЯёЁ\"«»\-\s\d]{" . $min . "," . $max . "}/u";
       break;
+    case 'password':
+      $str .= "[a-zA-Zа-яА-ЯёЁ\d_#:;\+\-=()\-,.?!\"«»]{" . $min . "," . $max . "}/u";
+      break;
     case 'mail':
-      $str .= ".+@.+..+[a-z]{2}/u";
+      $str .= ".+@.+\.[a-z]{2,}/u";
       break;
     }
     return $str;

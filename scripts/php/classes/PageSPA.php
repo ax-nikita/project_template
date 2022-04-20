@@ -8,8 +8,8 @@
         $page->title($title);
         $page->ajax_request = false;
       } else {
-        $page = new axComponent();
-        $titleElement = new axElement('title');
+        $page = new AxComponent();
+        $titleElement = new AxElement('title');
         $main = new Main();
         $page->main = $main;
 

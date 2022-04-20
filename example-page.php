@@ -36,7 +36,7 @@
   $main->append($p);
   
   $module = new AxElement('div');
-  $module->setAttribute('domLoader', '/moduls/example');
+  $module->setAttribute('domLoader', '/modules/group-1/example');
   $main->append($module);
 
   $main->append(Ax::getMemoryString());
